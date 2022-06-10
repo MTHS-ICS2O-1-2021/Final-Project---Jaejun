@@ -37,9 +37,6 @@ class TitleScene extends Phaser.Scene {
       .setScale(1)
     this.titleSceneBackgroundImage.x = 1920 / 2
     this.titleSceneBackgroundImage.y = 1080 / 2
-
-    this.titleSceneText = this.add
-      .text(1920 / 2, 1080 / 2 + 350, ".", this.titleSceneTextStyle).setOrigin(0.5)
   }
 
   update(time, delta) {
