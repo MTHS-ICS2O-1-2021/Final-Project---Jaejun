@@ -10,11 +10,11 @@ class GameScene extends Phaser.Scene {
   
   // create an alien
   createAlien() {
-    const alienXLocation = Math.floor(Math.random() * 1920) + 1 //spawns the alien between 1 and 1920 pixel
-    let alienXVelocity = Math.floor(Math.random() * 50) + 50 // this will get number between 1 and 50
+    const alienXLocation = Math.floor(Math.random() * 1920) + 1 //spawns the alien between 1 and 1921 pixel
+    let alienXVelocity = Math.floor(Math.random() * 50) + 1 // this will get number between 1 and 50
     alienXVelocity *= Math.round(Math.random()) ? 1 : -1 // this will add minus sign to 50% of cases
     const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien")
-    anAlien.body.velocity.y = 450
+    anAlien.body.velocity.y = 200
     anAlien.body.velocity.x = alienXVelocity
     this.alienGroup.add(anAlien)
   }
@@ -23,7 +23,6 @@ class GameScene extends Phaser.Scene {
     super({ key: "gameScene" })
 
     this.background = null
-    this.fireMissile = false
     this.score = 0
     this.scoreText = null
     this.scoreTextStyle = { font: '65px Arial', fill: '#ffffff', align: 'center' }
@@ -40,12 +39,9 @@ class GameScene extends Phaser.Scene {
     // images
     this.load.image('starBackground', 'assets/gameBackground.svg')
     this.load.image('ship', 'assets/spaceShip.png')
-    this.load.image('missile', 'assets/missile.png')
     this.load.image('alien', 'assets/alien.png')
     // sound
-    this.load.audio('laser', 'assets/laser1.wav')
-    this.load.audio('explosion', 'assets/barrelExploding.wav')
-    this.load.audio('bomb', 'assets/bomb.wav')
+
   }
   
   create(data) {
@@ -57,7 +53,7 @@ class GameScene extends Phaser.Scene {
     this.ship = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ship')
 
     // create a group for missiles
-    this.missileGroup= this.physics.add.group()
+    // this.missileGroup= this.physics.add.group()
 
     // create a group of the aliens
     this.alienGroup = this.add.group()
@@ -74,6 +70,7 @@ class GameScene extends Phaser.Scene {
       this.createAlien()
     }.bind(this))
 
+
     // Collisions between ship and aliens
     this.physics.add.collider(this.ship, this.alienGroup, function (shipCollide, alienCollide) {
       this.sound.play('bomb')
@@ -86,7 +83,7 @@ class GameScene extends Phaser.Scene {
     }.bind(this))
 
   }
-
+  
   update(time, delta) {
     //called 60 times a second, hopefully!
     const keyForwardObj = this.input.keyboard.addKey("W")
