@@ -97,8 +97,8 @@ class GameScene extends Phaser.Scene {
 
     if (keyForwardObj.isDown === true) {
       this.ship.y -= 15
-      if (this.ship.y > 1920) {
-        this.ship.y = 1920
+      if (this.ship.y < 1) {
+        this.ship.y = 1
       }
     }
 
@@ -111,8 +111,8 @@ class GameScene extends Phaser.Scene {
 
     if (keyBackwardObj.isDown === true) {
       this.ship.y += 15
-      if (this.ship.y > 1920) {
-        this.ship.y = 1920
+      if (this.ship.y > 1080) {
+        this.ship.y = 1080
       }
     }
 
