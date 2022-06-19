@@ -9,16 +9,31 @@
 class GameScene extends Phaser.Scene {
   
   // create an alien
-  createAlien() {
-    const alienXLocation = Math.floor(Math.random() * 1920) + 1 //spawns the alien between 1 and 1920 pixel
-    let alienXVelocity = Math.floor(Math.random() * 50) + 1 // this will get number between 1 and 50
-    alienXVelocity *= Math.round(Math.random()) ? 1 : -1 // this will add minus sign to 50% of cases
-    const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien")
-    anAlien.body.velocity.y = 200
-    anAlien.body.velocity.x = alienXVelocity
-    this.alienGroup.add(anAlien)
-  }
+  createAlien(numAlien) {
+
+    for( let i=0; i<numAlien; i++ ) {
+      const alienXLocation = Math.floor(Math.random() * 1920) + 1 //spawns the alien between 1 and 1920 pixel
+      let alienXVelocity = Math.floor(Math.random() * 50) + 1 // this will get number between 1 and 50
+      alienXVelocity *= Math.round(Math.random()) ? 1 : -1 // this will add minus sign to 50% of cases
+      const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien")
+      anAlien.body.velocity.y = 200 + alienXVelocity
+      anAlien.body.velocity.x = alienXVelocity
+      this.alienGroup.add(anAlien)
+    }
   
+  }
+  createAlien2(numAlien) {
+    for( let i=0; i<numAlien; i++ ) {
+      const alienYLocation = Math.floor(Math.random() * 1080) + 1 //spawns the alien between 1 and 1920 pixel
+      let alienYVelocity = Math.floor(Math.random() * 50) + 1 // this will get number between 1 and 50
+      alienYVelocity *= Math.round(Math.random()) ? 1 : -1 // this will add minus sign to 50% of cases
+      const anAlien = this.physics.add.sprite(-100, alienYLocation, "alien")
+      anAlien.body.velocity.x = 200 + alienYVelocity
+      anAlien.body.velocity.y = alienYVelocity
+      this.alienGroup.add(anAlien)
+    }
+  }
+ 
   constructor() {
     super({ key: "gameScene" })
 
@@ -61,7 +76,9 @@ class GameScene extends Phaser.Scene {
 
     // create a group of the aliens
     this.alienGroup = this.add.group()
-    this.createAlien()
+    this.createAlien2(5)
+    this.createAlien(5)
+    
 
     // Collision between missiles and aliens
     this.physics.add.collider(this.missileGroup, this.alienGroup, function(missileCollide, alienCollide) {
@@ -70,11 +87,9 @@ class GameScene extends Phaser.Scene {
       this.sound.play('explosion')
       this.score = this.score + 1
       this.scoreText.setText('Score: ' + this.score.toString())
-      this.createAlien()
-      this.createAlien()
+      this.createAlien( 1 )
     }.bind(this))
-
-    // Collision between aliens and 
+    
 
     // Collisions between ship and aliens
     this.physics.add.collider(this.ship, this.alienGroup, function (shipCollide, alienCollide) {
@@ -91,10 +106,10 @@ class GameScene extends Phaser.Scene {
 
   update(time, delta) {
     //called 60 times a second, hopefully!
-    const keyForwardObj = this.input.keyboard.addKey("W")
-    const keyLeftObj = this.input.keyboard.addKey("A")
-    const keyBackwardObj = this.input.keyboard.addKey("S")
-    const keyRightObj = this.input.keyboard.addKey("D")
+    const keyForwardObj = this.input.keyboard.addKey("UP")
+    const keyLeftObj = this.input.keyboard.addKey("LEFT")
+    const keyBackwardObj = this.input.keyboard.addKey("DOWN")
+    const keyRightObj = this.input.keyboard.addKey("RIGHT")
     const keySpaceObj = this.input.keyboard.addKey("SPACE")
 
     if (keyForwardObj.isDown === true) {
@@ -142,6 +157,18 @@ class GameScene extends Phaser.Scene {
       item.y = item.y - 15
       if (item.y < 0) {
         item.destroy()
+      }
+    })
+
+    this.alienGroup.children.each(function (item) {
+      if (item.y > 1080) {
+        item.y = 0
+        item.x = Math.floor(Math.random() * 1920) + 1
+      }
+
+      if (item.x > 1920) {
+        item.x = 0
+        item.y = Math.floor(Math.random() * 1080) + 1
       }
     })
   }
