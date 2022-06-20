@@ -53,15 +53,11 @@ class GameScene extends Phaser.Scene {
     console.log("Game Scene")
 
     // images
-    this.load.image('Background', 'assets/background.svg')
-    this.load.image('knight', 'assets/knight2.png')
-    this.load.image('missile', 'assets/missile.png')
+    this.load.image('Background', 'assets/background.png')
+    this.load.image('knight', 'assets/knight.png')
     this.load.image('speartop', 'assets/speartop.png')
-    this.load.image('spearright', 'assets/spearright.png')
-    // sound
-    this.load.audio('laser', 'assets/laser1.wav')
-    this.load.audio('explosion', 'assets/barrelExploding.wav')
-    this.load.audio('bomb', 'assets/bomb.wav')
+    this.load.image('spearright', 'assets/spearleft.png')
+
   }
   
   create(data) {
@@ -80,21 +76,10 @@ class GameScene extends Phaser.Scene {
     this.createAlien2(8)
     this.createAlien(8)
     
-
-    // Collision between missiles and aliens
-    this.physics.add.collider(this.missileGroup, this.alienGroup, function(missileCollide, alienCollide) {
-      alienCollide.destroy()
-      missileCollide.destroy()
-      this.sound.play('explosion')
-      this.score = this.score + 1
-      this.scoreText.setText('Score: ' + this.score.toString())
-      this.createAlien( 1 )
-    }.bind(this))
     
 
     // Collisions between ship and aliens
     this.physics.add.collider(this.ship, this.alienGroup, function (shipCollide, alienCollide) {
-      this.sound.play('bomb')
       this.physics.pause()
       alienCollide.destroy()
       shipCollide.destroy()
@@ -139,26 +124,6 @@ class GameScene extends Phaser.Scene {
         this.ship.x = 1920
       }
     }
-    if (keySpaceObj.isDown === true) {
-      if (this.fireMissile === false) {
-        // fire missile
-        this.fireMissile = true
-        const aNewMissile = this.physics.add.sprite(this.ship.x, this.ship.y, 'missile')
-        this.missileGroup.add(aNewMissile)
-        this.sound.play('laser')
-      }
-    }
-
-    if (keySpaceObj.isUp === true) {
-      this.fireMissile = false
-    }
-
-    this.missileGroup.children.each(function (item) {
-      item.y = item.y - 15
-      if (item.y < 0) {
-        item.destroy()
-      }
-    })
 
     this.alienGroup.children.each(function (item) {
       if (item.y > 1080) {
