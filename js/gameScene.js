@@ -15,8 +15,8 @@ class GameScene extends Phaser.Scene {
       const alienXLocation = Math.floor(Math.random() * 1920) + 1 //spawns the alien between 1 and 1920 pixel
       let alienXVelocity = Math.floor(Math.random() * 50) + 1 // this will get number between 1 and 50
       alienXVelocity *= Math.round(Math.random()) ? 1 : -1 // this will add minus sign to 50% of cases
-      const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien")
-      anAlien.body.velocity.y = 200 + alienXVelocity
+      const anAlien = this.physics.add.sprite(alienXLocation, -100, "speartop")
+      anAlien.body.velocity.y = 400 + alienXVelocity
       anAlien.body.velocity.x = alienXVelocity
       this.alienGroup.add(anAlien)
     }
@@ -24,11 +24,11 @@ class GameScene extends Phaser.Scene {
   }
   createAlien2(numAlien) {
     for( let i=0; i<numAlien; i++ ) {
-      const alienYLocation = Math.floor(Math.random() * 1080) + 1 //spawns the alien between 1 and 1920 pixel
-      let alienYVelocity = Math.floor(Math.random() * 50) + 1 // this will get number between 1 and 50
-      alienYVelocity *= Math.round(Math.random()) ? 1 : -1 // this will add minus sign to 50% of cases
-      const anAlien = this.physics.add.sprite(-100, alienYLocation, "alien")
-      anAlien.body.velocity.x = 200 + alienYVelocity
+      const alienYLocation = Math.floor(Math.random() * 1080) + 1
+      let alienYVelocity = Math.floor(Math.random() * 50) + 1
+      alienYVelocity *= Math.round(Math.random()) ? 1 : -1
+      const anAlien = this.physics.add.sprite(-100, alienYLocation, "spearright")
+      anAlien.body.velocity.x = 400 + alienYVelocity
       anAlien.body.velocity.y = alienYVelocity
       this.alienGroup.add(anAlien)
     }
@@ -53,10 +53,11 @@ class GameScene extends Phaser.Scene {
     console.log("Game Scene")
 
     // images
-    this.load.image('starBackground', 'assets/gameBackground.svg')
-    this.load.image('ship', 'assets/spaceShip.png')
+    this.load.image('Background', 'assets/background.svg')
+    this.load.image('knight', 'assets/knight2.png')
     this.load.image('missile', 'assets/missile.png')
-    this.load.image('alien', 'assets/alien.png')
+    this.load.image('speartop', 'assets/speartop.png')
+    this.load.image('spearright', 'assets/spearright.png')
     // sound
     this.load.audio('laser', 'assets/laser1.wav')
     this.load.audio('explosion', 'assets/barrelExploding.wav')
@@ -64,20 +65,20 @@ class GameScene extends Phaser.Scene {
   }
   
   create(data) {
-    this.background = this.add.image(0, 0, "starBackground").setScale(1.0)
+    this.background = this.add.image(0, 0, "Background").setScale(1.0)
     this.background.setOrigin(0, 0)
 
     this.scoreText = this.add.text(10, 10, 'Score: ' + this.score.toString(), this.scoreTextStyle)
 
-    this.ship = this.physics.add.sprite(1920 / 2, 1080 - 100, 'ship')
+    this.ship = this.physics.add.sprite(1920 / 2, 1080 - 100, 'knight')
 
     // create a group for missiles
     this.missileGroup= this.physics.add.group()
 
     // create a group of the aliens
     this.alienGroup = this.add.group()
-    this.createAlien2(5)
-    this.createAlien(5)
+    this.createAlien2(8)
+    this.createAlien(8)
     
 
     // Collision between missiles and aliens
@@ -97,11 +98,10 @@ class GameScene extends Phaser.Scene {
       this.physics.pause()
       alienCollide.destroy()
       shipCollide.destroy()
-      this.GameOverText = this.add.text(1920 / 2, 1080 / 2, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5)
-      this.GameOverText.setInteractive({ useHandCursor: true })
-      this.GameOverText.on('pointerdown', () => this.scene.start('GameScene'))
+      this.gameOverText = this.add.text(1920 / 2, 1080 / 2, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5)
+      this.gameOverText.setInteractive({ useHandCursor: true })
+      this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
     }.bind(this))
-
   }
 
   update(time, delta) {
