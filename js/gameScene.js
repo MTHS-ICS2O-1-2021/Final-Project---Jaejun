@@ -15,7 +15,7 @@ class GameScene extends Phaser.Scene {
       const spearXLocation = Math.floor(Math.random() * 1920) + 1
       let spearYVelocity = Math.floor(Math.random() * 400) + 200
       spearYVelocity *= Math.round(Math.random()) ? 1 : -1
-      const aSpear = this.physics.add.sprite(spearXLocation, -100, "speartop")
+      const aSpear = this.physics.add.sprite(spearXLocation, -100, "spearTop")
       aSpear.body.velocity.y = spearYVelocity
       aSpear.body.velocity.x = 0
       this.spearGroup.add(aSpear)
@@ -27,7 +27,7 @@ class GameScene extends Phaser.Scene {
       const spearYLocation = Math.floor(Math.random() * 1080) + 1
       let spearXVelocity = Math.floor(Math.random() * 400) + 200
       spearXVelocity *= Math.round(Math.random()) ? 1 : -1
-      const aSpear = this.physics.add.sprite(-100, spearYLocation, "spearleft")
+      const aSpear = this.physics.add.sprite(-100, spearYLocation, "spearLeft")
       aSpear.body.velocity.x = spearXVelocity
       aSpear.body.velocity.y = 0
       this.spearGroup.add(aSpear)
@@ -54,8 +54,8 @@ class GameScene extends Phaser.Scene {
     // images
     this.load.image('background', 'assets/background.png')
     this.load.image('knight', 'assets/knight.png')
-    this.load.image('speartop', 'assets/speartop.png')
-    this.load.image('spearleft', 'assets/spearleft.png')
+    this.load.image('spearTop', 'assets/spearTop.png')
+    this.load.image('spearLeft', 'assets/spearLeft.png')
 
   }
   
@@ -69,8 +69,8 @@ class GameScene extends Phaser.Scene {
 
     // create a group of the aliens
     this.spearGroup = this.add.group()
-    this.createSpear2(8)
-    this.createSpear(8)
+    this.createSpear(10)
+    this.createSpear2(10)
     
     
 
