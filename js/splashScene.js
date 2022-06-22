@@ -41,4 +41,3 @@ class SplashScene extends Phaser.Scene {
 }
 
 export default SplashScene
-
