@@ -7,10 +7,8 @@
 // This is the Game Scene
 
 class GameScene extends Phaser.Scene {
-  
   // create an alien
   createSpear(numSpear) {
-
     for( let i = 0; i < numSpear; i++ ) {
       const spearXLocation = Math.floor(Math.random() * 1920) + 1
       let spearYVelocity = Math.floor(Math.random() * 400) + 200
@@ -155,4 +153,5 @@ class GameScene extends Phaser.Scene {
     })
   }
 }
+
 export default GameScene

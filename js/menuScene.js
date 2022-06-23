@@ -7,8 +7,8 @@
 // This is the Title Scene
 
 /**
-* This class is the Menu Scene.
-*/
+ * This class is the Menu Scene.
+ */
 class MenuScene extends Phaser.Scene {
   constructor() {
     super({ key: "menuScene" })
@@ -43,4 +43,5 @@ class MenuScene extends Phaser.Scene {
     this.scene.start("gameScene")
   }
 }
+
 export default MenuScene
