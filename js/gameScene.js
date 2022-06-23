@@ -9,7 +9,7 @@
 class GameScene extends Phaser.Scene {
   // create an alien
   createSpear(numSpear) {
-    for( let i = 0; i < numSpear; i++ ) {
+    for(let i = 0; i < numSpear; i++) {
       const spearXLocation = Math.floor(Math.random() * 1920) + 1
       let spearYVelocity = Math.floor(Math.random() * 400) + 200
       spearYVelocity *= Math.round(Math.random()) ? 1 : -1
@@ -21,7 +21,7 @@ class GameScene extends Phaser.Scene {
   
   }
   createSpear2(numSpear) {
-    for( let i = 0; i < numSpear; i++ ) {
+    for(let i = 0; i < numSpear; i++) {
       const spearYLocation = Math.floor(Math.random() * 1080) + 1
       let spearXVelocity = Math.floor(Math.random() * 400) + 200
       spearXVelocity *= Math.round(Math.random()) ? 1 : -1
@@ -39,14 +39,14 @@ class GameScene extends Phaser.Scene {
     this.score = 0
     this.scoreText = null
     this.scoreTextStyle = {
-      font: '65px Arial',
-      fill: '#ffffff',
-      align: 'center'
+      font: "65px Arial",
+      fill: "#ffffff",
+      align: "center"
     }
     this.gameOverTextStyle = {
-      font: '65px Arial',
-      fill: '#ff0000',
-      align: 'center'
+      font: "65px Arial",
+      fill: "#ff0000",
+      align: "center"
     }
   }
 
@@ -62,9 +62,7 @@ class GameScene extends Phaser.Scene {
     this.load.image("knight', 'assets/knight.png")
     this.load.image("spearTop', 'assets/spearTop.png")
     this.load.image("spearLeft', 'assets/spearLeft.png")
-
   }
-  
   create(data) {
     this.background = this.add.image(0, 0, "background").setScale(1.0)
     this.background.setOrigin(0, 0)
@@ -100,7 +98,7 @@ class GameScene extends Phaser.Scene {
           )
           .setOrigin(0.5)
         this.gameOverText.setInteractive({ useHandCursor: true })
-        this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
+        this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
       }.bind(this)
     )
   }
