@@ -4,9 +4,3 @@
     "selector-class-pattern": "^[a-z][a-z0-9_-]+$"
   }
 }
-{
-  "extends": "stylelint-config-standard",
-  "rules": {
-    "selector-class-pattern": "^[a-z][a-z0-9_-]+$"
-  }
-}
