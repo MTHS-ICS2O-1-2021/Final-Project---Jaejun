@@ -11,7 +11,7 @@ class GameScene extends Phaser.Scene {
   // create an alien
   createSpear(numSpear) {
 
-    for( let i=0; i<numSpear; i++ ) {
+    for( let i = 0; i < numSpear; i++ ) {
       const spearXLocation = Math.floor(Math.random() * 1920) + 1
       let spearYVelocity = Math.floor(Math.random() * 400) + 200
       spearYVelocity *= Math.round(Math.random()) ? 1 : -1
@@ -23,7 +23,7 @@ class GameScene extends Phaser.Scene {
   
   }
   createSpear2(numSpear) {
-    for( let i=0; i<numSpear; i++ ) {
+    for( let i = 0; i < numSpear; i++ ) {
       const spearYLocation = Math.floor(Math.random() * 1080) + 1
       let spearXVelocity = Math.floor(Math.random() * 400) + 200
       spearXVelocity *= Math.round(Math.random()) ? 1 : -1
@@ -40,8 +40,16 @@ class GameScene extends Phaser.Scene {
     this.background = null
     this.score = 0
     this.scoreText = null
-    this.scoreTextStyle = { font: '65px Arial', fill: '#ffffff', align: 'center' }
-    this.gameOverTextStyle = { font: '65px Arial', fill: '#ff0000', align: 'center' }
+    this.scoreTextStyle = {
+      font: '65px Arial',
+      fill: '#ffffff',
+      align: 'center'
+    }
+    this.gameOverTextStyle = {
+      font: '65px Arial',
+      fill: '#ff0000',
+      align: 'center'
+    }
   }
 
   init(data) {
@@ -52,10 +60,10 @@ class GameScene extends Phaser.Scene {
     console.log("Game Scene")
 
     // images
-    this.load.image('background', 'assets/background.png')
-    this.load.image('knight', 'assets/knight.png')
-    this.load.image('spearTop', 'assets/spearTop.png')
-    this.load.image('spearLeft', 'assets/spearLeft.png')
+    this.load.image("background', 'assets/background.png")
+    this.load.image("knight', 'assets/knight.png")
+    this.load.image("spearTop', 'assets/spearTop.png")
+    this.load.image("spearLeft', 'assets/spearLeft.png")
 
   }
   
@@ -63,26 +71,40 @@ class GameScene extends Phaser.Scene {
     this.background = this.add.image(0, 0, "background").setScale(1.0)
     this.background.setOrigin(0, 0)
 
-    this.scoreText = this.add.text(10, 10, 'Score: ' + this.score.toString(), this.scoreTextStyle)
+    this.scoreText = this.add.text(
+      10,
+      10,
+      "Score: " + this.score.toString(),
+      this.scoreTextStyle
+    )
 
-    this.knight = this.physics.add.sprite(1920 / 2, 1080 - 100, 'knight')
+    this.knight = this.physics.add.sprite(1920 / 2, 1080 - 100, "knight")
 
     // create a group of the aliens
     this.spearGroup = this.add.group()
     this.createSpear(10)
     this.createSpear2(10)
-    
-    
 
     // Collisions between knight and spears
-    this.physics.add.collider(this.knight, this.spearGroup, function (knightCollide, spearCollide) {
-      this.physics.pause()
-      spearCollide.destroy()
-      knightCollide.destroy()
-      this.gameOverText = this.add.text(1920 / 2, 1080 / 2, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5)
-      this.gameOverText.setInteractive({ useHandCursor: true })
-      this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
-    }.bind(this))
+    this.physics.add.collider(
+      this.knight,
+      this.spearGroup,
+      function (knightCollide, spearCollide) {
+        this.physics.pause()
+        spearCollide.destroy()
+        knightCollide.destroy()
+        this.gameOverText = this.add
+          .text(
+            1920 / 2,
+            1080 / 2,
+            "Game Over!\nClick to play again.",
+            this.gameOverTextStyle
+          )
+          .setOrigin(0.5)
+        this.gameOverText.setInteractive({ useHandCursor: true })
+        this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
+      }.bind(this)
+    )
   }
 
   update(time, delta) {
@@ -133,5 +155,4 @@ class GameScene extends Phaser.Scene {
     })
   }
 }
-
 export default GameScene
