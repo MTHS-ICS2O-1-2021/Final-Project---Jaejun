@@ -6,7 +6,6 @@
 // Created on: April 2022
 // This is the Splash Scene
 
-
 /**
  * This class is the Spash Scene.
  */

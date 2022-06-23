@@ -9,7 +9,7 @@
 class GameScene extends Phaser.Scene {
   // create an alien
   createSpear(numSpear) {
-    for(let i = 0; i < numSpear; i++) {
+    for (let i = 0; i < numSpear; i++) {
       const spearXLocation = Math.floor(Math.random() * 1920) + 1
       let spearYVelocity = Math.floor(Math.random() * 400) + 200
       spearYVelocity *= Math.round(Math.random()) ? 1 : -1
@@ -18,10 +18,9 @@ class GameScene extends Phaser.Scene {
       aSpear.body.velocity.x = 0
       this.spearGroup.add(aSpear)
     }
-  
   }
   createSpear2(numSpear) {
-    for(let i = 0; i < numSpear; i++) {
+    for (let i = 0; i < numSpear; i++) {
       const spearYLocation = Math.floor(Math.random() * 1080) + 1
       let spearXVelocity = Math.floor(Math.random() * 400) + 200
       spearXVelocity *= Math.round(Math.random()) ? 1 : -1
@@ -41,12 +40,12 @@ class GameScene extends Phaser.Scene {
     this.scoreTextStyle = {
       font: "65px Arial",
       fill: "#ffffff",
-      align: "center"
+      align: "center",
     }
     this.gameOverTextStyle = {
       font: "65px Arial",
       fill: "#ff0000",
-      align: "center"
+      align: "center",
     }
   }
 
