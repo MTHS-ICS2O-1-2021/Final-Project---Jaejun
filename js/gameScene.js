@@ -57,10 +57,10 @@ class GameScene extends Phaser.Scene {
     console.log("Game Scene")
 
     // images
-    this.load.image("background', 'assets/background.png")
-    this.load.image("knight', 'assets/knight.png")
-    this.load.image("spearTop', 'assets/spearTop.png")
-    this.load.image("spearLeft', 'assets/spearLeft.png")
+    this.load.image("background", "assets/background.png")
+    this.load.image("knight", "assets/knight.png")
+    this.load.image("spearTop", "assets/spearTop.png")
+    this.load.image("spearLeft", "assets/spearLeft.png")
   }
   create(data) {
     this.background = this.add.image(0, 0, "background").setScale(1.0)
