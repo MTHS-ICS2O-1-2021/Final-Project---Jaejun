@@ -47,7 +47,11 @@ class GameScene extends Phaser.Scene {
       const spearXLocation = Math.floor(Math.random() * 1920) + 1
       let spearYVelocity = Math.floor(Math.random() * 100) + 400
       spearYVelocity *= Math.round(Math.random()) ? 1 : -1
-      const aSpear = this.physics.add.sprite(spearXLocation, 1080, "spearBottom")
+      const aSpear = this.physics.add.sprite(
+        spearXLocation,
+        1080,
+        "spearBottom"
+      )
       aSpear.body.velocity.y = -spearYVelocity
       aSpear.body.velocity.x = 0
       this.spearGroup2.add(aSpear)
@@ -152,10 +156,8 @@ class GameScene extends Phaser.Scene {
       }.bind(this)
     )
   }
- 
 
   update(time, delta) {
-
     const keyForwardObj = this.input.keyboard.addKey("UP")
     const keyLeftObj = this.input.keyboard.addKey("LEFT")
     const keyBackwardObj = this.input.keyboard.addKey("DOWN")
@@ -163,9 +165,9 @@ class GameScene extends Phaser.Scene {
 
     if (!this.gameOver) {
       this.score = this.score + 1
-      this.scoreText.setText('Score: ' + this.score.toString())
+      this.scoreText.setText("Score: " + this.score.toString())
     }
-    
+
     if (keyForwardObj.isDown === true) {
       this.knight.y -= 10
       if (this.knight.y < 1) {
