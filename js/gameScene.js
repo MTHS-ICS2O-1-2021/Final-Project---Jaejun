@@ -106,10 +106,10 @@ class GameScene extends Phaser.Scene {
     // create a group of the aliens
     this.spearGroup = this.add.group()
     this.spearGroup2 = this.add.group()
-    this.createSpearTopToBottom(10)
-    this.createSpearLeftToRight(10)
-    this.createSpearRightToLeft(10)
-    this.createSpearBottomToTop(10)
+    this.createSpearTopToBottom(8)
+    this.createSpearLeftToRight(8)
+    this.createSpearRightToLeft(8)
+    this.createSpearBottomToTop(8)
 
     this.gameOver = false
     this.score = 0 // reset the score
