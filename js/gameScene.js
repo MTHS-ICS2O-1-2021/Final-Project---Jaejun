@@ -11,7 +11,7 @@ class GameScene extends Phaser.Scene {
   createSpearTopToBottom(numSpear) {
     for (let i = 0; i < numSpear; i++) {
       const spearXLocation = Math.floor(Math.random() * 1920) + 1
-      let spearYVelocity = Math.floor(Math.random() * 100) + 400
+      let spearYVelocity = Math.floor(Math.random() * 200) + 400
       spearYVelocity *= Math.round(Math.random()) ? 1 : -1
       const aSpear = this.physics.add.sprite(spearXLocation, 0, "spearTop")
       aSpear.body.velocity.y = spearYVelocity
@@ -22,7 +22,7 @@ class GameScene extends Phaser.Scene {
   createSpearLeftToRight(numSpear) {
     for (let i = 0; i < numSpear; i++) {
       const spearYLocation = Math.floor(Math.random() * 1080) + 1
-      let spearXVelocity = Math.floor(Math.random() * 100) + 400
+      let spearXVelocity = Math.floor(Math.random() * 200) + 400
       spearXVelocity *= Math.round(Math.random()) ? 1 : -1
       const aSpear = this.physics.add.sprite(0, spearYLocation, "spearLeft")
       aSpear.body.velocity.x = spearXVelocity
@@ -34,7 +34,7 @@ class GameScene extends Phaser.Scene {
   createSpearRightToLeft(numSpear) {
     for (let i = 0; i < numSpear; i++) {
       const spearYLocation = Math.floor(Math.random() * 1080) + 1
-      let spearXVelocity = Math.floor(Math.random() * 100) + 400
+      let spearXVelocity = Math.floor(Math.random() * 200) + 400
       spearXVelocity *= Math.round(Math.random()) ? 1 : -1
       const aSpear = this.physics.add.sprite(1920, spearYLocation, "spearRight")
       aSpear.body.velocity.x = -spearXVelocity
@@ -45,7 +45,7 @@ class GameScene extends Phaser.Scene {
   createSpearBottomToTop(numSpear) {
     for (let i = 0; i < numSpear; i++) {
       const spearXLocation = Math.floor(Math.random() * 1920) + 1
-      let spearYVelocity = Math.floor(Math.random() * 100) + 400
+      let spearYVelocity = Math.floor(Math.random() * 200) + 400
       spearYVelocity *= Math.round(Math.random()) ? 1 : -1
       const aSpear = this.physics.add.sprite(
         spearXLocation,
